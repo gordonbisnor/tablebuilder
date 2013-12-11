@@ -83,7 +83,7 @@ module Tablebuilder
         @model_list.map do |object|
           cycle_class = @context.cycle("odd", "even", :name => "_tablebuilder_row")
           row_classes = convert_class([object], @options.delete(:row_class), cycle_class)
-          content_tag :tr, :id => "#{object.class.underscore.downcase}_#{object.id}", :class => row_classes do
+          content_tag :tr, :id => "#{object.class.to_s.underscore.downcase}_#{object.id}", :class => row_classes do
             @columns.map do |column|
               content_tag :td, column.render_content(object), column.content_html
             end.join.html_safe
